@@ -9,7 +9,7 @@ void rotl(stack_t **head, unsigned int line_number)
 {
 	stack_t *temp, *last;
 
-	if (*head == NULL)
+	if (*head == NULL || (*head)->next == NULL)
 		return;
 	(void) line_number;
 	last = *head, temp = *head;
@@ -33,7 +33,7 @@ void rotr(stack_t **head, unsigned int line_number)
 {
 	stack_t *tmp, *last;
 
-	if (*head == NULL)
+	if (*head == NULL || (*head)->next == NULL)
 		return;
 	(void) line_number;
 	last = *head, tmp = *head;
