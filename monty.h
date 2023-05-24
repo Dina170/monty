@@ -47,6 +47,10 @@ void pint(stack_t **head, unsigned int line_number);
 void _pop(stack_t **head, unsigned int line_number);
 void swap(stack_t **head, unsigned int line_number);
 void add(stack_t **head, unsigned int line_number);
+void sub(stack_t **head, unsigned int line_number);
+void _div(stack_t **head, unsigned int line_number);
+void mul(stack_t **head, unsigned int line_number);
+void mod(stack_t **head, unsigned int line_number);
 void free_stack(stack_t *head);
 
 #endif
