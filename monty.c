@@ -10,15 +10,16 @@ char *lineptr = NULL;
 
 void read_file(char *filename, stack_t **stack)
 {
-	int i;
 	FILE *fp;
 	char *opcode;
 	size_t n = 0, line_number = 1;
 	instruction_t operation[] = {
 		{"push", _push}, {"pall", pall}, {"pint", pint}, {"pop", _pop},
 		{"swap", swap},	{"add", add}, {"sub", sub}, {"div", _div}, {"mul", mul},
-		{"mod", mod}
+		{"mod", mod}, {"pchar", pchar}, {"pstr", pstr}, {"rotl", rotl},
+		{"rotr", rotr}
 	};
+	int i, operationsLen = sizeof(operation) / sizeof(instruction_t);
 
 	fp = fopen(filename, "r");
 	if (fp == NULL)
@@ -29,15 +30,15 @@ void read_file(char *filename, stack_t **stack)
 	while (getline(&lineptr, &n, fp) != -1)
 	{
 		opcode = strtok(lineptr, " \n");
-		if (opcode != NULL && strcmp(opcode, "nop"))
+		if (opcode != NULL && strcmp(opcode, "nop") && opcode[0] != '#')
 		{
-			for (i = 0; i < 10; i++)
+			for (i = 0; i < operationsLen; i++)
 				if (!strcmp(opcode, operation[i].opcode))
 				{
 					operation[i].f(stack, line_number);
 					break;
 				}
-			if (i == 10)
+			if (i == operationsLen)
 			{
 				fprintf(stderr, "L%ld: unknown instruction %s\n", line_number, opcode);
 				free(lineptr), free_stack(*stack);
