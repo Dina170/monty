@@ -117,3 +117,4 @@ void mod(stack_t **head, unsigned int line_number)
 	tmp->next->n %= tmp->n;
 	_pop(head, line_number);
 }
+

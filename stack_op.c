@@ -11,8 +11,12 @@ char isInteger(char *str)
 	int i;
 
 	for (i = 0; str[i]; i++)
-		if (!isdigit(str[i]))
+	{
+		if (str[i] == '-')
+			continue;
+		else if (!isdigit(str[i]))
 			return (0);
+	}
 	return (1);
 }
 
